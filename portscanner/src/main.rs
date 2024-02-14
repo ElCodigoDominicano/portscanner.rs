@@ -34,7 +34,7 @@ pub fn port_scanner() -> Box<Vec<u16>> {
             if let Ok(_stream) = TcpStream::connect_timeout(&socket, Duration::from_nanos(1)) {
                 vec_of_open_ports.push(socket.port().to_owned());
             }
-        }else {
+        } else {
             println!("My apologies, but {:?} hasn't been implemented yet.", OS.to_string());
             exit(0);
         }
