@@ -16,7 +16,7 @@ use std::net::{
 };
 use std::env::consts::OS;
 use std::process::exit;
-use std::time::{Instant, Duration};
+use std::time::Instant;
 
 pub fn port_scanner() -> Box<Vec<u16>> {
     let mut vec_of_open_ports:  Box<Vec<u16>> = Box::new(Vec::new());
@@ -28,10 +28,6 @@ pub fn port_scanner() -> Box<Vec<u16>> {
     for port in 2..65535 {
         if OS == "linux" {
             if let Ok(_stream) = TcpStream::connect(&socket) {
-                vec_of_open_ports.push(socket.port().to_owned());
-            }
-        } else if OS == "windows" {
-            if let Ok(_stream) = TcpStream::connect_timeout(&socket, Duration::from_nanos(1)) {
                 vec_of_open_ports.push(socket.port().to_owned());
             }
         } else {
